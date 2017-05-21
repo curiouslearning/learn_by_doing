@@ -107,3 +107,31 @@ export default class LearnByDoing extends Component {
   }
 }
 ```
+
+Great, now let's start up the [Android Debug Bridge](https://developer.android.com/studio/command-line/adb.html) (ADB) with the logcat option to view emulator output. (you should be in your projects root directory)
+
+```
+$ adb logcat
+```
+
+When using 'adb logcat' you will also see other log level information that the system (android) prints out, in addition to your own info. While it may not seem like the best way to do debugging, this style of debugging can be extreamly helpful and you should use it wisely. 
+
+Here is an example of my console output: 
+
+<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/log.png" width="600" height="242">
+
+I know we are all use to a gui world, but really print statements will help you and they are really fast comparied to breakpoints and guis, especially with RN. With that said their are some other great tools. 
+
+One more point I want to make before we proceed. It is always easier to find mistakes if you do frequent debugging. Don't write hundreds of lines of code, add lots of new media and packages and then see if everthing is working. When you do that you often can introduce many interelatd bugs that take time to debug. I find it much easier to debug after small changes, even if it is just for piece of mind. 
+
+Alright let's talk about some of the GUI tools. 
+
+## Chrome Developer Tools
+As we continue talking about debugging let us also continue making a simple app that highlights some features of navigation in RN. 
+
+## React Native Debugger 
+
+## React Navigation
+
+
+
