@@ -13,6 +13,23 @@ import {
 } from 'react-native';
 
 export default class LearnByDoing extends Component {
+  constructor (props) {
+    super(props);
+    console.log("hum, why didn't I see this?")
+  }
+  
+  componentWillMount () {
+    console.warn("the component will mount");
+  }
+  
+  componentDidMount () {
+    console.error("the component did mount");
+  }
+  
+  componentWillUnmount () {
+    console.warn("say goodbye while you can");
+  }
+  
   render() {
     return (
       <View style={styles.container}>
