@@ -21,3 +21,9 @@ Alright now let’s install a couple packages
 $ npm install --save react-navigation
 $ npm install --save react-native-animated-sprite
 ```
+Good, now let's startup Genymotion (or other) and get your Android emulator running. Once your emulator is running start you new app. 
+```
+$ react-native run-android
+```
+
+You should see. 
