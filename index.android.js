@@ -15,22 +15,23 @@ import {
 export default class LearnByDoing extends Component {
   constructor (props) {
     super(props);
-    console.log("hum, why didn't I see this?")
+    console.log("I see I am in the constructor");
   }
   
   componentWillMount () {
-    console.warn("the component will mount");
+    console.log("the component will mount");
   }
   
   componentDidMount () {
-    console.error("the component did mount");
+    console.log("the component did mount");
   }
   
   componentWillUnmount () {
-    console.warn("say goodbye while you can");
+    console.log("say goodbye while you can");
   }
   
   render() {
+    console.log("this thing is going to render now")
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
