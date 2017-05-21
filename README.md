@@ -26,4 +26,84 @@ Good, now let's startup Genymotion (or other) and get your Android emulator runn
 $ react-native run-android
 ```
 
-You should see. 
+You should see
+
+<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/firstBuild.png" width="300" height="184">
+
+
+Great, now open "index.android.js" and make the following changes.  
+```
+...
+export default class LearnByDoing extends Component {
+  constructor (props) {
+    super(props);
+    console.log("hum, why didn't I see this?")
+  }
+  
+  componentWillMount () {
+    console.warn("the component will mount");
+  }
+  
+  componentDidMount () {
+    console.error("the component did mount");
+  }
+  
+  componentWillUnmount () {
+    console.warn("say goodbye while you can");
+  }
+...
+````
+
+Now rebuild your app and you should see the following: 
+
+<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/error.png" width="300" height="184">
+
+By calling console.error RN will display a large red error modal with information about the error that. If you "dismiss" the error, or press anywhere on the screen, you will then see this: 
+
+<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/warn.png" width="300" height="184">
+
+The yellow notification bar along the botton indicatings a warning. While the use of console warn and error are not meant for debugging, per se, they can be used for quick debugging info that gets your attention. Generally speaking you would use console.warn moreso then error. 
+
+You might be wondering why we did not see anything for "console.log()" Well warn and error are meant for user notification, i.e. the end user, while loging is somthing that is done for you not the end user. As a result console log does not have a UI display element like warn and error. 
+
+With that said, console.log is a much hander way of doing "print statement" debugging. 
+
+Let's change our class to look like this: 
+```
+export default class LearnByDoing extends Component {
+  constructor (props) {
+    super(props);
+    console.log("I see I am in the constructor");
+  }
+  
+  componentWillMount () {
+    console.log("the component will mount");
+  }
+  
+  componentDidMount () {
+    console.log("the component did mount");
+  }
+  
+  componentWillUnmount () {
+    console.log("say goodbye while you can");
+  }
+  
+  render() {
+    console.log("this thing is going to render now")
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>
+          Welcome to React Native!
+        </Text>
+        <Text style={styles.instructions}>
+          To get started, edit index.android.js
+        </Text>
+        <Text style={styles.instructions}>
+          Double tap R on your keyboard to reload,{'\n'}
+          Shake or press menu button for dev menu
+        </Text>
+      </View>
+    );
+  }
+}
+```
