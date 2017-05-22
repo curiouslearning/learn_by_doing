@@ -127,7 +127,138 @@ One more point I want to make before we proceed. It is always easier to find mis
 Alright let's talk about some of the GUI tools. 
 
 ## Chrome Developer Tools
-As we continue talking about debugging let us also continue making a simple app that highlights some features of navigation in RN. 
+As we continue talking about debugging let us also continue making a simple app that highlights some features of navigation in RN. We are going to add the following packages from react-native Image, Button, Dimensions. Your import should look like this: 
+```
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  Dimensions,
+} from 'react-native';
+```
+
+Great, now let's great a new file in the root of your RN app called "Preferences.js" add the following as the contents of Preferences.js: 
+```
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
+
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+} from 'react-native';
+
+import {
+  StackNavigator,
+} from 'react-navigation';
+
+export default class Preferences extends Component {
+  
+  static navigationOptions = {
+    title: 'Preferences',
+    header: false
+  };
+  
+  render() {
+    const { navigate } = this.props.navigation;
+    
+    return (
+      <View>
+        <Text
+          style={{
+            fontSize: 42,
+          }}
+        >
+          User Preferences
+        </Text>
+        <Button
+          onPress={() => navigate('Main')}
+          title="Curious about Learning?"
+        />
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+  fontStyle: {
+    fontSize: 42,
+  },
+});
+
+
+AppRegistry.registerComponent('Preferences', () => App);
+```
+
+Awesome, not add the following to index.android.js: 
+```
+import _ from 'lodash';
+import Preferences from './Preferences';
+```
+
+Okay, we just added a lot of code and multiple new import statements, we really sould reload our app and make sure nothing is the matter. Typically I would have reloaded several times while writing the little bit we did above. Everything should work and you wont see any changes. Let's add some media to our project. 
+
+We are going to add a sprite, background image, and an icon image that is also a sprite strucutre. The following links are for the assets: [sprits folder](https://github.com/micahrye/LearnByDoing/tree/master/sprites/), [backgrounds](https://github.com/micahrye/LearnByDoing/tree/master/media), and [game icons](https://github.com/micahrye/LearnByDoing/tree/master/media). 
+
+Make sure you have a similar tree structure to this: 
+```
+LearnByDoing/
+|--- Preferences.js
+|--- index.android.js
+|--- media/
+      |---- backgrounds
+      |---- gameIcon
+|--- sprites
+      |--- monster
+```
+
+Alright, we are going import a few more things to 'index.android.js' and add a couple global constants. Add the following: 
+```
+import AnimatedSprite from 'react-native-animated-sprite';
+import monsterSprite from './sprites/monster/monsterSprite';
+import gameIcon from "./media/gameIcon/gameIcon";
+
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
+const baseHeight = 800;
+const baseWidth = 1280;
+```
+Okay, let's reload our app!!! If you are like me you got an error :( 
+
+<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/import_error.png" width="600" height="453">
+
+It looks like we forgot to add 'react-native-animated-sprite,' a quick look in package.json confirms that we did. At the command line do the following: 
+```
+$ npm install --save react-native-animated-sprite
+```
+Now reload your app, okay everyone is happy :) 
+
+
 
 ## React Native Debugger 
 
