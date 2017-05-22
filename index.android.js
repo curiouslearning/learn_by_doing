@@ -21,6 +21,14 @@ import {
 
 import _ from 'lodash';
 import Preferences from './Preferences';
+import AnimatedSprite from 'react-native-animated-sprite';
+import monsterSprite from './sprites/monster/monsterSprite';
+import gameIcon from "./media/gameIcon/gameIcon";
+
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
+const baseHeight = 800;
+const baseWidth = 1280;
 
 export default class LearnByDoing extends Component {
   constructor (props) {
