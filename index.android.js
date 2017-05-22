@@ -9,8 +9,18 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image,
+  Button,
+  Dimensions,
 } from 'react-native';
+
+import {
+  StackNavigator,
+} from 'react-navigation';
+
+import _ from 'lodash';
+import Preferences from './Preferences';
 
 export default class LearnByDoing extends Component {
   constructor (props) {
