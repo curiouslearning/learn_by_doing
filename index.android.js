@@ -50,6 +50,7 @@ export default class LearnByDoing extends Component {
   
   render() {
     console.log("this thing is going to render now")
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -62,6 +63,10 @@ export default class LearnByDoing extends Component {
           Double tap R on your keyboard to reload,{'\n'}
           Shake or press menu button for dev menu
         </Text>
+        <Button
+          onPress={() => navigate('Prefs')}
+          title="Go to Prefs!!!"
+        />
       </View>
     );
   }
@@ -86,4 +91,9 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('LearnByDoing', () => LearnByDoing);
+const App = StackNavigator({
+  Main: {screen: LearnByDoing},
+  Prefs: {screen: Preferences},
+});
+
+AppRegistry.registerComponent('LearnByDoing', () => App);
