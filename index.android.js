@@ -51,12 +51,6 @@ export default class LearnByDoing extends Component {
         location: {top: 130, left: 100},
         frameIndex: [13],
       },
-      {
-        name: 'BUBBLE',
-        imgSrc: require('./media/gameIcon/game7_icon_color.png'),
-        location: {top: 230, left: 200},
-        frameIndex: [13],
-      },
     ];
 
     this.iconList = _.shuffle(iconList);
@@ -69,7 +63,6 @@ export default class LearnByDoing extends Component {
   componentDidMount () {
     _.forEach(this.iconList, (icon, index) => {
       const timeout = setTimeout(() => {
-        debugger;
         let iconRef = this.refs[this.iconRefs[index]];
         iconRef.startTween();
       }, 100 * index);
