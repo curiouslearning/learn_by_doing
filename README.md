@@ -126,8 +126,8 @@ One more point I want to make before we proceed. It is always easier to find mis
 
 Alright let's talk about some of the GUI tools. 
 
-## Chrome Developer Tools
-As we continue talking about debugging let us also continue making a simple app that highlights some features of navigation in RN. We are going to add the following packages from react-native Image, Button, Dimensions. Your import should look like this: 
+## React Navigation
+Because I want to introduce [navigation](https://facebook.github.io/react-native/docs/navigation.html) too, I will focus on that for a little bit and then we will jump back to debugging tools. Let us also continue making a simple app that highlights some features of navigation in RN. We are going to add the following packages from react-native Image, Button, Dimensions. Your import should look like this: 
 ```
 import {
   AppRegistry,
@@ -258,6 +258,95 @@ $ npm install --save react-native-animated-sprite
 ```
 Now reload your app, okay everyone is happy :) 
 
+Now let's add some navigation, add the following to the bottom of 'index.android.js': 
+```
+const App = StackNavigator({
+  Main: {screen: LearnByDoing},
+  Prefs: {screen: Preferences},
+});
+
+AppRegistry.registerComponent('LearnByDoing', () => App);
+```
+In the render method add the following before the return statement: 
+```
+const { navigate } = this.props.navigation;
+```
+And in the return statement add: 
+```
+<Button
+  onPress={() => navigate('Prefs')}
+  title="Go to Prefs!!!"
+/>
+```
+after the last 'Text' element. No reload your app and you will see the following with working navigation!
+
+<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/nav.png" width="600" height="365">
+
+Great, we have navigation. As important as navigation is the React-Native project has not navigated navagation the best. Their early implementation had a lot of issues, especially for Android. The open source community started building their own solutions, the RN project landed "NavigationExperimental" as an option and the world was confused and none of the options were amazing. For now FB and RN have decided that the community solution "react-navigation" is the best. It should be noted that there has been a lot of open source community software incorporated into RN, ya community making things better. 
+
+Anyhow, I am mentioning this because you may want navigation and sometime there will be lot's of different information on the Internet on how to do it, I just want to point you towards the "supported" way. Now let's get back to debugging. Replace the contents of index.android.js with the following [file](https://github.com/micahrye/LearnByDoing/blob/master/index.android.js)
+
+Alright, reload and it should all work. You should spend some time playing with the code that was given and get a feeling for how to use navigation etc.
+
+
+## Chrome Developer Tools
+The first GUI debugger we will use is Chrome. The Chrome developer tools are awesome for web development, but not as awesome for RN, but I will get to that. 
+
+Let's learn by doing, change 'iconList' to the following:
+```
+const iconList = [
+      {
+        name: 'BUBBLE',
+        imgSrc: require('./media/gameIcon/game7_icon_color.png'),
+        location: {top: 130, left: 100},
+        frameIndex: [13],
+      },
+      {
+        name: 'BUBBLE',
+        imgSrc: require('./media/gameIcon/game7_icon_color.png'),
+        location: {top: 230, left: 200},
+        frameIndex: [13],
+      },
+    ];
+```
+Then add a 'debugger;' statement inside the 'forEach' statement in 'componentDidMount' so you have:
+```
+  componentDidMount () {
+    _.forEach(this.iconList, (icon, index) => {
+      const timeout = setTimeout(() => {
+        debugger;
+        let iconRef = this.refs[this.iconRefs[index]];
+        iconRef.startTween();
+      }, 100 * index);
+      this.iconAppearTimeout.push(timeout);
+    });
+    
+  }
+```
+
+WARNING!!!! You may see some warnings, I did. Even if you did not these two warnings I saw are something you could see. The first is the following: 
+```
+Debugger and device times had drifted by more than 60s. Please correct this by running adb shell "date date +%m%d%H%M%Y.%S" on your debugger machine
+```
+When you see this just do the following at the command line: 
+```
+$ adb shell "date `date +%m%d%H%M%Y.%S`"
+```
+
+The second is related to way Chrome is not "awesome" for RN,
+```
+Remote debugger is in a background tab which may cause apps to preform slowly. Fix this by foregrounding the tab (or opening it in a separate window).
+```
+
+This issue here is that Chrome does not handle RN debugging at native speeds and some other Chrome internal issues. As a result, especially with animations, the app may be very sloooow. For best performance I have found it is best to close all your other tabs and just debug. I will show you another approach in the following section, and don't forget you always have console.log and 'adb logcat' :)
+
+Let's continue though, if you opened the Chrome dev tool and reloaded the app you should see something like this: 
+
+<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/nav.png" width="960" height="530">
+
+In the above image the application has paused execution on line 72 at the 'debugger;' statement. In the upper right menue there are several buttons for continue program execution. We will use the 'step over' command to proceed the execution by two lines, press the step over icon twice. 
+
+In the console below the code you can execute JS statements and inspect/change active program variables etc. One of the great things about JS is that you can play around with it so much while debugging it, change variable values, execute functions etc. These are all parts of the tools you have to figure out what is going on or confirm what should happen. 
 
 
 ## React Native Debugger 
