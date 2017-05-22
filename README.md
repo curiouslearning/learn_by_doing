@@ -342,7 +342,7 @@ This issue here is that Chrome does not handle RN debugging at native speeds and
 
 Let's continue though, if you opened the Chrome dev tool and reloaded the app you should see something like this: 
 
-<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/nav.png" width="960" height="530">
+<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/debugger.png" width="960" height="530">
 
 In the above image the application has paused execution on line 72 at the 'debugger;' statement. In the upper right menue there are several buttons for continue program execution. We will use the 'step over' command to proceed the execution by two lines, press the step over icon twice. 
 
@@ -350,8 +350,20 @@ In the console below the code you can execute JS statements and inspect/change a
 
 
 ## React Native Debugger 
+The React Native Debugger (RND) is open source debuging solution. It is a standalone app for debugging React Native apps, it's based on the official Remote Debugger, and includes React Inspector / Redux DevTools. The project has support for Linux, Mac OSX, and Windows. I have only used it on Mac OSX. Go over to the projects github repo [here](https://github.com/jhen0409/react-native-debugger), and follow instructions for installing or get a pre made binary [here](https://github.com/jhen0409/react-native-debugger/releases). 
+
+While the interface looks different it functions similar to Chrome's dev tools. I believe it uses Chromium under the hood. Anyhow, the nice thing I have found is that it often functions much smoother than Chrome's dev tools with RN. Furthermore, I have had issues with general poor performance from Chrome when debugging RN apps. For that reason I generally use RND. 
+
+Once you have installed RND make sure to close your Chrome dev tools and open RND. Now reload your app and RND should become active and you will find yourself paused at line 72 again :) 
+
 
 ## React Navigation
+There is a lot to react-navigation, you will want to checkout the the official [site](https://reactnavigation.org/) and read the [docs](https://reactnavigation.org/docs/intro/) if/when you use it. 
 
 
+## Exercise
+You should spend more time practiciing debugging. Break the code on purpose, see what happens when you reload the app? What messages/errors does it display? Test different approaches, console.log, Chrome, RND. Get confortable using multiple approaches. 
+
+## Suggested Reading
+I know I know I know, every week right? But really they are good books. Consider reading more from the “You Don’t Know JS” series [here](https://github.com/getify/You-Dont-Know-JS). 
 
