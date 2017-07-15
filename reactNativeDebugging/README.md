@@ -28,7 +28,7 @@ $ react-native run-android
 
 You should see:
 
-<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/firstBuild.png" width="300" height="184">
+<img src="https://raw.githubusercontent.com/micahrye/learn_by_doing/master/reactNativeDebugging/media/firstBuild.png" width="300" height="184">
 
 
 Open "index.android.js" and make the following changes:
@@ -37,7 +37,8 @@ Open "index.android.js" and make the following changes:
 export default class LearnByDoing extends Component {
   constructor (props) {
     super(props);
-    console.log("hum, why didn't I see this?")
+    
+    .log("hum, why didn't I see this?")
   }
   
   componentWillMount () {
@@ -56,11 +57,11 @@ export default class LearnByDoing extends Component {
 
 Now rebuild your app and you should see the following: 
 
-<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/error.png" width="300" height="184">
+<img src="https://raw.githubusercontent.com/micahrye/learn_by_doing/master/reactNativeDebugging/media/error.png" width="300" height="184">
 
 By calling console.error, RN will display a large red error modal with information about the error. If you "dismiss" the error, or press anywhere on the screen, you will then see this: 
 
-<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/warn.png" width="300" height="184">
+<img src="https://raw.githubusercontent.com/micahrye/learn_by_doing/master/reactNativeDebugging/media/warn.png" width="300" height="184">
 
 The yellow notification bar along the bottom indicates a warning. While the use of console warnings and errors are not meant for debugging per-se, they can be used for quick debugging info that gets your attention. Generally speaking you would use console.warn more so than error. 
 
@@ -120,7 +121,7 @@ While it may not seem like the best way to do debugging, this style of debugging
 
 Here is an example of my console output: 
 
-<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/log.png" width="600" height="242">
+<img src="https://raw.githubusercontent.com/micahrye/learn_by_doing/master/reactNativeDebugging/media/log.png" width="600" height="242">
 
 I know we are all used to a GUI world, but print statements will help immensely and it is really fast compared to breakpoints and GUIs, especially with RN. 
 
@@ -233,7 +234,7 @@ Typically, I would have reloaded several times while writing the little bit we d
 
 Next let’s create some visual interest in our application by adding a sprite, background image, and an icon image that is also a sprite structure. 
 
-The following links are for the assets: [sprite folder](https://github.com/micahrye/LearnByDoing/tree/master/sprites/), [backgrounds](https://github.com/micahrye/LearnByDoing/tree/master/media), and [game icons](https://github.com/micahrye/LearnByDoing/tree/master/media). 
+The following links are for the assets: [sprite folder](https://github.com/micahrye/learn_by_doing/tree/master/reactNativeDebugging/sprites/monster), [backgrounds](https://github.com/micahrye/learn_by_doing/tree/master/reactNativeDebugging/media), and [game icons](https://github.com/micahrye/LearnByDoing/tree/master/media). 
 
 Make sure you have a similar tree structure to this: 
 ```
@@ -262,7 +263,7 @@ Since we have added enough to our previously working codebase, now would be a go
 
 If you are like me, then you got an error :(
 
-<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/import_error.png" width="600" height="453">
+<img src="https://raw.githubusercontent.com/micahrye/learn_by_doing/master/reactNativeDebugging/media/import_error.png" width="600" height="453">
 
 It looks like we forgot to add 'react-native-animated-sprite', and a quick look in package.json confirms that we did. 
 
@@ -294,7 +295,7 @@ In the return statement, after the last ‘Text element’, add:
 ```
 Now reload your app and you will see the following with working navigation!
 
-<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/nav.png" width="600" height="365">
+<img src="https://raw.githubusercontent.com/micahrye/learn_by_doing/master/reactNativeDebugging/media/nav.png" width="600" height="365">
 
 As important as navigation is, the React-Native project has not handled navigation as elegantly as one would hope. The early implementation had a lot of issues, especially for Android. In response, the open source community started building their own solutions. The RN project created "NavigationExperimental" as an option and the world was confused and none of the options were amazing. 
 
@@ -364,7 +365,7 @@ For best performance I have found it is best to close all your other tabs and ju
 
 If you opened the Chrome dev tool and reloaded the app you should see something like this: 
 
-<img src="https://raw.githubusercontent.com/micahrye/LearnByDoing/master/media/debugger.png" width="960" height="530">
+<img src="https://raw.githubusercontent.com/micahrye/learn_by_doing/master/reactNativeDebugging/debugger.png" width="960" height="530">
 
 In the above image, the application has paused execution on line 72 at the 'debugger;' statement. In the upper right menu, there are several buttons for continuing program execution. Press the “step over” command icon twice to advance code execution by two lines.
 
