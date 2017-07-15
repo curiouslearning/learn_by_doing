@@ -35,7 +35,12 @@ task_queue.push({name: "pause", data: -3});
 * remove is passed an objec with a data property that contains the tasks that
 * where pushed in. It expects a test, if true the item will be removed. 
 */
-// task_queue.remove((queued_task) => {
-//   console.log(`task = ${JSON.stringify(queued_task.data)}`);
-//   return queued_task.data.data === -2;
-// });
+const remove_task = (queue, task) => {
+  queue.remove((queued_task) => {
+    // console.log(`task = ${JSON.stringify(queued_task.data)}`);
+    return queued_task.data.data === task.data;
+  });
+};
+
+const task = {name: "pause", data: -2};
+remove_task(task_queue, task);
