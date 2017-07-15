@@ -14,7 +14,9 @@ const task_runner = function (task, done) {
   }
 }
 
-const number_concurent_tasks = 2; 
+// when number concurent tasks 1 it effectivly runs async code sequentially
+// change value and run code to see different behavior. 
+const number_concurent_tasks = 6; 
 const task_queue = async.queue(task_runner, number_concurent_tasks);
 
 task_queue.drain = function() {
